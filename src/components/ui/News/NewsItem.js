@@ -8,7 +8,7 @@ import NewsDescriptionText from "./NewsDescriptionText";
 
 export default function NewsItem({ news, author }) {
   return (
-    <Card className="card-img idn-card-item mb-3">
+    <Card className="card-img idn-card-item">
       <LazyLoadImage
         className="img-fluid idc-item-image"
         src={news.image.large}
