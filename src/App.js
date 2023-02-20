@@ -1,4 +1,4 @@
-import React, { Component, lazy } from "react";
+import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import ContentLayouts from "./Layouts/ContentLayouts";
@@ -6,6 +6,7 @@ import Navigation from "./components/shared/Navigation";
 import Footer from "./components/shared/Footer";
 import Loading from "./components/shared/Loading";
 import PageNotFound from "./components/shared/PageNotFound";
+import SearchNews from "./containers/SearchNews";
 // Include components
 const loading = () => null;
 
@@ -78,7 +79,7 @@ export default class App extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2500);
+    }, 2000);
   }
 
   render() {
@@ -91,6 +92,7 @@ export default class App extends Component {
           ) : (
             <Routes>
               <Route exact path="*" element={<PageNotFound />} />
+              <Route exact path="/search" element={<SearchNews />} />
               <Route exact path="/dunia" element={<NewsInternasional />} />
               <Route exact path="/indonesia" element={<NewsNasional />} />
               <Route exact path="/syariah" element={<NewsSyariah />} />

@@ -40,19 +40,12 @@ export default class NewsSyariah extends Component {
 
   render() {
     return (
-      <div className="application">
+      <div className="py-5 mt-5">
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Syariah"
+          defaultTitle="Berita Syariah"
           titleTemplate="Indonesia Berita"
-        >
-          {/* multiple meta elements */}
-          <meta
-            name="description"
-            content="Temukan semua berita lengkap dan terupdate hanya di indonesia berita"
-          />
-          <meta property="og:type" content="article" />
-        </Helmet>
+        ></Helmet>
         <section className="idn-container">
           {this.state.loading ? (
             <Loading />

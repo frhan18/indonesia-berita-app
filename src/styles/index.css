@@ -29,8 +29,14 @@ html, body {
 .main-content {
   width: 100%;
   height: auto;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   position: relative;
+}
+
+.idn-hero-container {
+  height: 400px;
+  margin-bottom: 30px;
+  border-bottom: 1px dotted black;
 }
 
 /*

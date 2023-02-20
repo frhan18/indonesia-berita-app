@@ -1,15 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import API_ENDPOINT from "../../config/api-endpoint";
 
 export default function Footer() {
   const date = new Date();
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_ENDPOINT.NEWS.CNBC.NEWS}`)
+      .then((response) => setItems(response.data.data))
+      .catch((error) =>
+        error.response
+          ? console.log(
+              { errData: error.response.data },
+              { errStatus: error.response.status }
+            )
+          : console.log({ msg: error.message })
+      );
+  }, []);
 
   return (
     <footer className="footer-section">
       <Container>
-        <Row className="justify-content-arround">
-          <Col md={6}>
+        <Row className="justify-content-arround ">
+          <Col lg={4} md={6} sm="12">
             <div>
               <h2 className="text-white mb-3">TENTANG</h2>
             </div>
@@ -19,7 +36,7 @@ export default function Footer() {
                 berita Internasional dan Nasional.
               </p>
             </div>
-            <div>
+            <div className="mb-3">
               <p>
                 Powered by{" "}
                 <a
@@ -53,11 +70,11 @@ export default function Footer() {
               </p>
             </div>
           </Col>
-          <Col md={6}>
+          <Col lg={2} md="auto" sm="12">
             <div>
               <h3 className="text-white mb-3">NAVIGASI</h3>
             </div>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column mb-3">
               <Link to="/" className=" text-white text-decoration-none mb-1">
                 Beranda
               </Link>
@@ -127,6 +144,31 @@ export default function Footer() {
               >
                 Syariah
               </Link>
+            </div>
+          </Col>
+          <Col lg={6} md="auto" sm="12">
+            <div>
+              <h3 className="text-white mb-3">BERITA TERKINI</h3>
+            </div>
+            <div className="d-flex flex-column">
+              <ul>
+                {items
+                  ?.slice(0, 10)
+                  .filter((filtered) => filtered.isoDate && filtered.title)
+                  .sort()
+                  .map((item, index) => (
+                    <li key={index} className="mb-1">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        className="text-white text-decoration-none "
+                        rel="noreferrer"
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </Col>
         </Row>
