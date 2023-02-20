@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import API_ENDPOINT from "../config/api-endpoint";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 // Include components:news
 import NewsItem from "../components/ui/News/NewsItem";
@@ -41,19 +41,12 @@ export default class NewsTeknologi extends Component {
 
   render() {
     return (
-      <div className="application">
+      <div className="py-5 mt-5">
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Teknologi"
+          defaultTitle="Berita Teknologi"
           titleTemplate="Indonesia Berita"
-        >
-          {/* multiple meta elements */}
-          <meta
-            name="description"
-            content="Temukan semua berita lengkap dan terupdate hanya di indonesia berita"
-          />
-          <meta property="og:type" content="article" />
-        </Helmet>
+        ></Helmet>
         <section className="idn-container">
           {this.state.loading ? (
             <Loading />

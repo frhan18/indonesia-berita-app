@@ -40,10 +40,10 @@ export default class NewsNasional extends Component {
 
   render() {
     return (
-      <div className="application">
+      <div className="py-5 mt-5">
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Dalam Negeri"
+          defaultTitle="Berita Dalam Negeri"
           titleTemplate="Indonesia Berita"
         >
           {/* multiple meta elements */}

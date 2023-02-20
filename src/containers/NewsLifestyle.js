@@ -40,25 +40,18 @@ export default class NewsLifestyle extends Component {
 
   render() {
     return (
-      <div className="application">
+      <div className="py-5 mt-5">
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Lifestyle"
+          defaultTitle=" Berita Kesehatan"
           titleTemplate="Indonesia Berita"
-        >
-          {/* multiple meta elements */}
-          <meta
-            name="description"
-            content="Temukan semua berita lengkap dan terupdate hanya di indonesia berita"
-          />
-          <meta property="og:type" content="article" />
-        </Helmet>
+        ></Helmet>
         <section className="idn-container">
           {this.state.loading ? (
             <Loading />
           ) : (
             <div className="idn-items-list px-3">
-              <ProgramSectionTitle title="BERITA GAYA HIDUP" />
+              <ProgramSectionTitle title="BERITA KESEHATAN" />
               <Row className="justify-content-arround">
                 {this.state.news?.map((data, index) => (
                   <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>

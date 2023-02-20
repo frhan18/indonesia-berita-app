@@ -42,10 +42,10 @@ export default class NewsMostViewed extends Component {
 
   render() {
     return (
-      <div className="application">
+      <div className="py-5 mt-5">
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Hari ini"
+          defaultTitle="Berita Terkini"
           titleTemplate="Indonesia Berita"
         >
           {/* multiple meta elements */}
