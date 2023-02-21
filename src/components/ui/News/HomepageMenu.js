@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -10,6 +11,19 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 // Include components:news
 import NewsItem from "./NewsItem";
 
+const HomepageMenuItem = styled.div`
+  margin-bottom: 30px;
+  padding: 20px;
+`;
+
+const HomepageMenuHeadingName = styled.div`
+  margin-bottom: 13px;
+`;
+
+const HomepageMenuItemList = styled.div`
+  width: 100%;
+`;
+
 export default function HomepageMenu({
   headingTitle,
   headingLink,
@@ -18,16 +32,16 @@ export default function HomepageMenu({
   infoAuthor,
 }) {
   return (
-    <div className="mb-3 px-3">
-      <div className="idn-heading-name">
-        <div className="d-flex justify-content-between align-items-center mb-3">
+    <HomepageMenuItem>
+      <HomepageMenuHeadingName>
+        <div className="d-flex justify-content-between align-items-center ">
           <h2 className="text-dark ">{headingTitle}</h2>
           <Link to={headingLink} className="text-dark text-decoration-none">
             {headingLinkName} <i className="fas fa-arrow-right"></i>
           </Link>
         </div>
-      </div>
-      <div className="idn-items-list">
+      </HomepageMenuHeadingName>
+      <HomepageMenuItemList>
         <Swiper
           className="mySwiper"
           slidesPerView={1}
@@ -59,7 +73,7 @@ export default function HomepageMenu({
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-    </div>
+      </HomepageMenuItemList>
+    </HomepageMenuItem>
   );
 }

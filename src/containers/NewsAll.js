@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import API_ENDPOINT from "../config/api-endpoint";
-import { Helmet } from "react-helmet";
-import { Col, Row, ThemeProvider } from "react-bootstrap";
-
+import { Col, Row } from "react-bootstrap";
+import ThemeProvider from "react-bootstrap/ThemeProvider";
 // Include components:news
 import NewsItem from "../components/ui/News/NewsItem";
 import ProgramSectionTitle from "../components/ui/Program/ProgramSectionTitle";
 import Loading from "../components/shared/Loading";
-export default class NewsInvest extends Component {
+import { Helmet } from "react-helmet";
+
+export default class NewsAll extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,9 +26,9 @@ export default class NewsInvest extends Component {
     }, 2000);
   }
 
-  receivedData() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.INVESTMENT}`)
+  async receivedData() {
+    await axios
+      .get(`${API_ENDPOINT.NEWS.ALL}`)
       .then((response) => this.setState({ news: response.data.data }))
       .catch((error) =>
         error.response
@@ -38,12 +39,13 @@ export default class NewsInvest extends Component {
           : console.log({ msg: error.message })
       );
   }
+
   render() {
     return (
-      <>
+      <div>
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle=" Berita Investasi"
+          defaultTitle="Semua Berita"
           titleTemplate="Indonesia Berita"
         ></Helmet>
         <>
@@ -55,11 +57,11 @@ export default class NewsInvest extends Component {
               minBreakpoint="xxs"
             >
               <div className="idn-items-list px-3">
-                <ProgramSectionTitle title="BERITA INVESTASI" />
+                <ProgramSectionTitle title="SEMUA BERITA" />
                 <Row className="justify-content-arround">
                   {this.state.news?.map((data, index) => (
                     <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
-                      <NewsItem news={data} author="CBNC INDONESIA" />
+                      <NewsItem news={data} />
                     </Col>
                   ))}
                 </Row>
@@ -67,7 +69,7 @@ export default class NewsInvest extends Component {
             </ThemeProvider>
           )}
         </>
-      </>
+      </div>
     );
   }
 }

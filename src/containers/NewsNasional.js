@@ -26,7 +26,7 @@ export default class NewsNasional extends Component {
 
   receivedData() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNN.NASIONAL}`)
+      .get(`${API_ENDPOINT.NEWS.NASIONAL}`)
       .then((response) => this.setState({ news: response.data.data }))
       .catch((error) =>
         error.response
@@ -40,20 +40,13 @@ export default class NewsNasional extends Component {
 
   render() {
     return (
-      <div className="py-5 mt-5">
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Berita Dalam Negeri"
           titleTemplate="Indonesia Berita"
-        >
-          {/* multiple meta elements */}
-          <meta
-            name="description"
-            content="Temukan semua berita lengkap dan terupdate hanya di indonesia berita"
-          />
-          <meta property="og:type" content="article" />
-        </Helmet>
-        <section className="idn-container">
+        ></Helmet>
+        <>
           {this.state.loading ? (
             <Loading />
           ) : (
@@ -68,8 +61,8 @@ export default class NewsNasional extends Component {
               </Row>
             </div>
           )}
-        </section>
-      </div>
+        </>
+      </>
     );
   }
 }

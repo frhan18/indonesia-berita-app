@@ -17,6 +17,7 @@
     "react-paginate": "^8.1.4",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6",
     "swiper": "^9.0.5",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.4.2",
