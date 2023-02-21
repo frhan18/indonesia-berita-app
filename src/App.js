@@ -1,38 +1,100 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
+import Loadable from "react-loadable";
 import ContentLayouts from "./Layouts/ContentLayouts";
-
+import Navigation from "./components/shared/Navigation";
+import Footer from "./components/shared/Footer";
+import Loading from "./components/shared/Loading";
+import PageNotFound from "./components/shared/PageNotFound";
 // Include components
-const Navigation = React.lazy(() => import("./components/shared/Navigation"));
-const NewsHomepage = React.lazy(() => import("./containers/NewsHomepage"));
-const NewsMostViewed = React.lazy(() => import("./containers/NewsMostViewed"));
-const NewsTeknologi = React.lazy(() => import("./containers/NewsTeknologi"));
-const NewsSports = React.lazy(() => import("./containers/NewsSports"));
-const NewsHiburan = React.lazy(() => import("./containers/NewsHiburan"));
-const NewsLifestyle = React.lazy(() => import("./containers/NewsLifestyle"));
-const NewsInvest = React.lazy(() => import("./containers/NewsInvest"));
-const NewsBusiness = React.lazy(() => import("./containers/NewsBusiness"));
-const NewsEkonomi = React.lazy(() => import("./containers/NewsEkonomi"));
-const NewsSyariah = React.lazy(() => import("./containers/NewsSyariah"));
-const NewsNasional = React.lazy(() => import("./containers/NewsNasional"));
-const NewsInternasional = React.lazy(() =>
-  import("./containers/NewsInternasional")
-);
+const loading = () => null;
+
+const NewsHomepage = Loadable({
+  loader: () => import("./containers/NewsHomepage"),
+  loading: Loading,
+});
+
+const NewsAll = Loadable({
+  loader: () => import("./containers/NewsAll"),
+  loading: loading,
+});
+const NewsMostViewed = Loadable({
+  loader: () => import("./containers/NewsMostViewed"),
+  loading: loading,
+});
+
+const NewsTeknologi = Loadable({
+  loader: () => import("./containers/NewsTeknologi"),
+  loading: loading,
+});
+
+const NewsSports = Loadable({
+  loader: () => import("./containers/NewsSports"),
+  loading: loading,
+});
+
+const NewsHiburan = Loadable({
+  loader: () => import("./containers/NewsHiburan"),
+  loading: loading,
+});
+
+const NewsLifestyle = Loadable({
+  loader: () => import("./containers/NewsLifestyle"),
+  loading: loading,
+});
+
+const NewsInvest = Loadable({
+  loader: () => import("./containers/NewsInvest"),
+  loading: loading,
+});
+
+const NewsBusiness = Loadable({
+  loader: () => import("./containers/NewsBusiness"),
+  loading: loading,
+});
+const NewsEkonomi = Loadable({
+  loader: () => import("./containers/NewsEkonomi"),
+  loading: Loading,
+});
+const NewsSyariah = Loadable({
+  loader: () => import("./containers/NewsSyariah"),
+  loading: loading,
+});
+const NewsNasional = Loadable({
+  loader: () => import("./containers/NewsNasional"),
+  loading: loading,
+});
+const NewsInternasional = Loadable({
+  loader: () => import("./containers/NewsInternasional"),
+  loading: loading,
+});
+
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    // Tambah state loading
+    this.state = {
+      loading: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+  }
+
   render() {
     return (
-      <React.StrictMode>
+      <React.Fragment>
         <Navigation />
         <ContentLayouts>
-          <Suspense
-            fallback={
-              <div className="loader">
-                <div className="ring"></div>
-                <div className="loading">Sedang memuat...</div>
-              </div>
-            }
-          >
+          {this.state.loading ? (
+            <Loading />
+          ) : (
             <Routes>
+              <Route exact path="*" element={<PageNotFound />} />
               <Route exact path="/dunia" element={<NewsInternasional />} />
               <Route exact path="/indonesia" element={<NewsNasional />} />
               <Route exact path="/syariah" element={<NewsSyariah />} />
@@ -44,11 +106,13 @@ export default class App extends Component {
               <Route exact path="/olahraga" element={<NewsSports />} />
               <Route exact path="/teknologi" element={<NewsTeknologi />} />
               <Route exact path="/terkini" element={<NewsMostViewed />} />
+              <Route exact path="/berita" element={<NewsAll />} />
               <Route exact path="/" element={<NewsHomepage />} />
             </Routes>
-          </Suspense>
+          )}
         </ContentLayouts>
-      </React.StrictMode>
+        <Footer />
+      </React.Fragment>
     );
   }
 }
