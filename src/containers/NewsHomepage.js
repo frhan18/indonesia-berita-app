@@ -6,7 +6,12 @@ import { Helmet } from "react-helmet";
 // Include components:news;
 import HomepageMenu from "../components/ui/News/HomepageMenu";
 import Loading from "../components/shared/Loading";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const HomepageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default class NewsHomepage extends Component {
   constructor(props) {
@@ -36,7 +41,7 @@ export default class NewsHomepage extends Component {
 
   getMostViewedLoadApi() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.NEWS}`)
+      .get(`${API_ENDPOINT.NEWS.LATEST}`)
       .then((response) => this.setState({ mostViewed: response.data.data }))
       .catch((error) =>
         error.response
@@ -50,7 +55,7 @@ export default class NewsHomepage extends Component {
 
   getTeknologiLoadApi() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.TECH}`)
+      .get(`${API_ENDPOINT.NEWS.TECH}`)
       .then((response) => this.setState({ tecnology: response.data.data }))
       .catch((error) =>
         error.response
@@ -64,7 +69,7 @@ export default class NewsHomepage extends Component {
 
   getLifestyleLoadApi() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.LIFESTYLE}`)
+      .get(`${API_ENDPOINT.NEWS.LIFESTYLE}`)
       .then((response) => this.setState({ lifestyle: response.data.data }))
       .catch((error) =>
         error.response
@@ -77,7 +82,7 @@ export default class NewsHomepage extends Component {
   }
   getNasionalNewsLoadApi() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNN.NASIONAL}`)
+      .get(`${API_ENDPOINT.NEWS.NASIONAL}`)
       .then((response) => this.setState({ nasional: response.data.data }))
       .catch((error) =>
         error.response
@@ -90,7 +95,7 @@ export default class NewsHomepage extends Component {
   }
   getInternasionalNewsLoadApi() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNN.INTERNASIONAL}`)
+      .get(`${API_ENDPOINT.NEWS.INTERNASIONAL}`)
       .then((response) => this.setState({ internasional: response.data.data }))
       .catch((error) =>
         error.response
@@ -110,27 +115,11 @@ export default class NewsHomepage extends Component {
           defaultTitle="Indonesia Berita"
           titleTemplate="Indonesia Berita"
         />
-        <section className="idn-container" id="container">
+        <HomepageContainer>
           {this.state.loading ? (
             <Loading />
           ) : (
-            <div>
-              <div className="container-fluid idn-hero-container">
-                <div className="py-3 pt-3">
-                  <div className=" pt-5 mt-5">
-                    <h1 className="display-3">Selamat Datang!</h1>
-                    <h1 className="display-3 mb-4">
-                      Temukan berita internasional & nasional.
-                    </h1>
-                    <Link to="/terkini" className="btn btn-lg btn-dark">
-                      Temukan Semua Berita
-                    </Link>
-                    <Link to="/search" className="btn btn-lg btn-dark ms-2">
-                      Cari Semua Berita
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <>
               <HomepageMenu
                 headingTitle="BERITA HARI INI"
                 headingLinkName="Lihat semua"
@@ -166,9 +155,9 @@ export default class NewsHomepage extends Component {
                 items={this.state.tecnology}
                 infoAuthor="CBNC INDONESIA"
               />
-            </div>
+            </>
           )}
-        </section>
+        </HomepageContainer>
       </React.Fragment>
     );
   }

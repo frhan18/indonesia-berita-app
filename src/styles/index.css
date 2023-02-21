@@ -29,7 +29,8 @@ html, body {
 .main-content {
   width: 100%;
   height: auto;
-  /* margin-top: 5rem; */
+  margin-top: 5rem;
+  padding-top: 5rem;
   position: relative;
 }
 
@@ -43,7 +44,6 @@ html, body {
    Navbar
 */
 .navbar {
-  /* border: 1px dotted #000; */
   background-color: #fff;
   color: #000;
   min-height: 90px;
@@ -97,8 +97,8 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-   line-clamp: 2;
+  -webkit-line-clamp: 3;
+   line-clamp: 3;
   -webkit-box-orient: vertical;
   transition: ease-in 300ms;
 }
@@ -115,13 +115,13 @@ html, body {
   font-size: 18px;
   font-weight: 400;
   text-align: justify;
-    overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      /* number of lines to show */
-      line-clamp: 3;
-      -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .idn-card-item .idc-item-image {

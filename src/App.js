@@ -6,7 +6,6 @@ import Navigation from "./components/shared/Navigation";
 import Footer from "./components/shared/Footer";
 import Loading from "./components/shared/Loading";
 import PageNotFound from "./components/shared/PageNotFound";
-import SearchNews from "./containers/SearchNews";
 // Include components
 const loading = () => null;
 
@@ -15,6 +14,10 @@ const NewsHomepage = Loadable({
   loading: Loading,
 });
 
+const NewsAll = Loadable({
+  loader: () => import("./containers/NewsAll"),
+  loading: loading,
+});
 const NewsMostViewed = Loadable({
   loader: () => import("./containers/NewsMostViewed"),
   loading: loading,
@@ -92,7 +95,6 @@ export default class App extends Component {
           ) : (
             <Routes>
               <Route exact path="*" element={<PageNotFound />} />
-              <Route exact path="/search" element={<SearchNews />} />
               <Route exact path="/dunia" element={<NewsInternasional />} />
               <Route exact path="/indonesia" element={<NewsNasional />} />
               <Route exact path="/syariah" element={<NewsSyariah />} />
@@ -104,6 +106,7 @@ export default class App extends Component {
               <Route exact path="/olahraga" element={<NewsSports />} />
               <Route exact path="/teknologi" element={<NewsTeknologi />} />
               <Route exact path="/terkini" element={<NewsMostViewed />} />
+              <Route exact path="/berita" element={<NewsAll />} />
               <Route exact path="/" element={<NewsHomepage />} />
             </Routes>
           )}

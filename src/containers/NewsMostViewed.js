@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import API_ENDPOINT from "../config/api-endpoint";
 import { Col, Row } from "react-bootstrap";
 import ThemeProvider from "react-bootstrap/ThemeProvider";
@@ -28,7 +29,7 @@ export default class NewsMostViewed extends Component {
 
   async receivedData() {
     await axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.ALL}`)
+      .get(`${API_ENDPOINT.NEWS.LATEST}`)
       .then((response) => this.setState({ news: response.data.data }))
       .catch((error) =>
         error.response
@@ -42,20 +43,13 @@ export default class NewsMostViewed extends Component {
 
   render() {
     return (
-      <div className="py-5 mt-5">
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Berita Terkini"
           titleTemplate="Indonesia Berita"
-        >
-          {/* multiple meta elements */}
-          <meta
-            name="description"
-            content="Temukan semua berita lengkap dan terupdate hanya di indonesia berita"
-          />
-          <meta property="og:type" content="article" />
-        </Helmet>
-        <section className="idn-container">
+        ></Helmet>
+        <>
           {this.state.loading ? (
             <Loading />
           ) : (
@@ -75,8 +69,8 @@ export default class NewsMostViewed extends Component {
               </div>
             </ThemeProvider>
           )}
-        </section>
-      </div>
+        </>
+      </>
     );
   }
 }

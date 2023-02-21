@@ -26,7 +26,7 @@ export default class NewsSyariah extends Component {
 
   receivedData() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.SYARIAH}`)
+      .get(`${API_ENDPOINT.NEWS.SYARIAH}`)
       .then((response) => this.setState({ news: response.data.data }))
       .catch((error) =>
         error.response
@@ -40,13 +40,13 @@ export default class NewsSyariah extends Component {
 
   render() {
     return (
-      <div className="py-5 mt-5">
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Berita Syariah"
           titleTemplate="Indonesia Berita"
         ></Helmet>
-        <section className="idn-container">
+        <>
           {this.state.loading ? (
             <Loading />
           ) : (
@@ -61,8 +61,8 @@ export default class NewsSyariah extends Component {
               </Row>
             </div>
           )}
-        </section>
-      </div>
+        </>
+      </>
     );
   }
 }

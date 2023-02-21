@@ -10,7 +10,7 @@ export default function Footer() {
 
   useEffect(() => {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.NEWS}`)
+      .get(`${API_ENDPOINT.NEWS.LATEST}`)
       .then((response) => setItems(response.data.data))
       .catch((error) =>
         error.response
@@ -148,7 +148,7 @@ export default function Footer() {
           </Col>
           <Col lg={6} md="auto" sm="12">
             <div>
-              <h3 className="text-white mb-3">BERITA TERKINI</h3>
+              <h3 className="text-white mb-3">UPDATE BERITA TERKINI</h3>
             </div>
             <div className="d-flex flex-column">
               <ul>

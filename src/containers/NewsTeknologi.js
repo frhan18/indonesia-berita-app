@@ -27,7 +27,7 @@ export default class NewsTeknologi extends Component {
 
   receivedData() {
     axios
-      .get(`${API_ENDPOINT.NEWS.CNBC.TECH}`)
+      .get(`${API_ENDPOINT.NEWS.TECH}`)
       .then((response) => this.setState({ news: response.data.data }))
       .catch((error) =>
         error.response
@@ -41,13 +41,13 @@ export default class NewsTeknologi extends Component {
 
   render() {
     return (
-      <div className="py-5 mt-5">
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Berita Teknologi"
           titleTemplate="Indonesia Berita"
         ></Helmet>
-        <section className="idn-container">
+        <>
           {this.state.loading ? (
             <Loading />
           ) : (
@@ -62,8 +62,8 @@ export default class NewsTeknologi extends Component {
               </Row>
             </div>
           )}
-        </section>
-      </div>
+        </>
+      </>
     );
   }
 }

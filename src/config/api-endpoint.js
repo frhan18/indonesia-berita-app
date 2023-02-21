@@ -1,27 +1,19 @@
-import CONFIG from "./config";
-
 const API_ENDPOINT = {
   NEWS: {
-    CNN: {
-      ALL: `${CONFIG.BASE_URL}/v1/cnn-news`,
-      NASIONAL: `${CONFIG.BASE_URL}/v1/cnn-news/nasional`,
-      INTERNASIONAL: `${CONFIG.BASE_URL}/v1/cnn-news/internasional`,
-      EKONOMI: `${CONFIG.BASE_URL}/v1/cnn-news/ekonomi`,
-      OLAHRAGA: `${CONFIG.BASE_URL}/v1/cnn-news/olahraga`,
-      HIBURAN: `${CONFIG.BASE_URL}/v1/cnn-news/hiburan`,
-      GAYA_HIDUP: `${CONFIG.BASE_URL}/v1/cnn-news/gaya-hidup`,
-    },
-
-    CNBC: {
-      ALL: `${CONFIG.BASE_URL}/v1/cnbc-news`,
-      NEWS: `${CONFIG.BASE_URL}/v1/cnbc-news/news`,
-      MARKET: `${CONFIG.BASE_URL}/v1/cnbc-news/market`,
-      INVESTMENT: `${CONFIG.BASE_URL}/v1/cnbc-news/investment`,
-      ENTREPRENEUR: `${CONFIG.BASE_URL}/v1/cnbc-news/entrepreneur`,
-      SYARIAH: `${CONFIG.BASE_URL}/v1/cnbc-news/syariah`,
-      TECH: `${CONFIG.BASE_URL}/v1/cnbc-news/tech`,
-      LIFESTYLE: `${CONFIG.BASE_URL}/v1/cnbc-news/lifestyle`,
-    },
+    ALL: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news`,
+    LATEST: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/news`,
+    MARKET: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/market`,
+    INVESTMENT: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/investment`,
+    ENTREPRENUER: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/entrepreneur`,
+    TECH: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/tech`,
+    LIFESTYLE: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/lifestyle`,
+    SYARIAH: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/syariah`,
+    INTERNASIONAL: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/internasional`,
+    NASIONAL: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/nasional`,
+    KESEHATAN: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/gaya-hidup`,
+    OLAHRAGA: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/olahraga`,
+    EKONOMI: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/ekonomi`,
+    HIBURAN: `${process.env.REACT_APP_BASE_URL}/v1/cnn-news/hiburan`,
   },
 };
 
