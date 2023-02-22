@@ -25,18 +25,25 @@ export default class NewsHiburan extends Component {
     }, 2000);
   }
 
-  receivedData() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.HIBURAN}`)
-      .then((response) => this.setState({ news: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+  async receivedData() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.HIBURAN}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ news: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
 
   render() {
@@ -44,7 +51,7 @@ export default class NewsHiburan extends Component {
       <>
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Berita Hiburan"
+          defaultTitle="Indonesia Berita - Hiburan"
           titleTemplate="Indonesia Berita"
         ></Helmet>
         <>
