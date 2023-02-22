@@ -10,7 +10,7 @@ export default function Footer() {
 
   useEffect(() => {
     axios
-      .get(`${API_ENDPOINT.NEWS.LATEST}`)
+      .get(`${API_ENDPOINT.NEWS.ALL}`)
       .then((response) => setItems(response.data.data))
       .catch((error) =>
         error.response
