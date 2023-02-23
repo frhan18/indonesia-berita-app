@@ -112,8 +112,8 @@ export default class App extends Component {
               <Route exact path="/" element={<NewsHomepage />} />
             </Routes>
           )}
+          <Footer />
         </ContentLayouts>
-        <Footer />
       </React.Fragment>
     );
   }

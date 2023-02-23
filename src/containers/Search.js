@@ -11,7 +11,7 @@ export default function Search() {
         titleTemplate="Indonesia Berita"
       ></Helmet>
 
-      <div className="px-3">
+      <div className="px-md-3 mx-md-3 p-3 py-5">
         <SearchNews />
       </div>
     </>
