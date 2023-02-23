@@ -39,7 +39,7 @@ export default class NewsHomepage extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
   async fetchDataNewsTerkini() {
@@ -149,7 +149,7 @@ export default class NewsHomepage extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Indonesia Berita"
@@ -198,7 +198,7 @@ export default class NewsHomepage extends Component {
             </>
           )}
         </HomepageContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

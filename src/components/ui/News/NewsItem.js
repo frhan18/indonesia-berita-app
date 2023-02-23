@@ -5,12 +5,13 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import NewsTitle from "./NewsTitle";
 import NewsInfo from "./NewsInfo";
 import NewsDescriptionText from "./NewsDescriptionText";
+import styles from "../../../modules/News/news.module.css";
 
 export default function NewsItem({ news, author }) {
   return (
-    <Card className="card-img idn-card-item">
+    <Card className={styles.card}>
       <LazyLoadImage
-        className="img-fluid idc-item-image"
+        className={styles.cardImage}
         src={news.image.large}
         alt={news.title}
       />

@@ -91,7 +91,7 @@ export default function SearchNews() {
         </Col>
       </Row>
 
-      <div className="idn-items-list px-3">
+      <div className="idn-items-list ">
         {loading ? (
           <div className="text-center">Sedang memuat....</div>
         ) : (

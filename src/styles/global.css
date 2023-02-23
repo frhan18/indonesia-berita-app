@@ -1,0 +1,250 @@
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  transition: ease-in-out;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #fff;
+  transition: ease 300ms;
+
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9c9c9c;
+  border-radius: 100px;
+  height: 120px;
+}
+
+/* 
+  Main content
+*/
+.main-content {
+  width: 100%;
+  height: auto;
+  margin-top: 7em;
+  position: relative;
+}
+
+.idn-hero-container {
+  height: 400px;
+  margin-bottom: 30px;
+  border-bottom: 1px dotted black;
+}
+
+/*
+   Navbar
+*/
+.navbar {
+  background-color: #000;
+  color: #fff;
+  min-height: 100px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, 
+              rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.navbar-collapse{
+  transition: ease-in-out 300ms !important;
+}
+
+.navbar-toggler {
+  background-color: #fff !important;
+}
+
+.navbar .navbar-brand {
+  font-size: 33px;
+  font-weight: 600;
+  font-style: normal;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .nav-link {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff !important;
+  text-transform: uppercase;
+}
+
+.idn-card-item {
+  width: 100%;
+  height: 550px !important;
+  background-color: #fff;
+  /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
+  border-radius: 8px !important;
+  margin-bottom: 30px;
+}
+
+.idc-card-item:hover {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+
+}
+
+.idc-card-item .idc-item-info {
+  margin-bottom: 13px;
+  border: 1px solid black !important;
+}
+
+.idn-card-item .idc-item-name {
+  font-size: 18px;
+  text-align: left;
+  color: black;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  transition: ease-in 300ms;
+}
+
+.idn-card-item .idc-item-name:hover {
+  text-decoration: underline;
+}
+
+.idn-card-item .idc-item-name:visited {
+  color: blueviolet !important;
+}
+
+.idn-card-item .idc-item-desc {
+  /* margin-bottom: 30px; */
+  font-size: 18px;
+  font-weight: 400;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.idn-card-item .idc-item-image {
+  width: 100%;
+  height: 250px;
+}
+
+.idn-card-item .idc-item-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+.idn-program-card {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: ease 500ms;
+  cursor: pointer;
+}
+
+.idn-program-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+.idn-program-card .idn-program__title {
+  font-size: 22px;
+  text-align: left;
+  color: black;
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+.idn-program-card .idn-program__desc {
+  margin-bottom: 13px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  /* number of lines to show */
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.idn-program-card .idn-program__action {
+  margin-bottom: 10px;
+}
+
+
+/*
+   Footer section
+*/
+.footer-section {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 
+  Loader
+*/
+.loader {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: all 0.5s;
+}
+
+.loader .ring {
+  height: 45px;
+  width: 45px;
+  border: 5px solid #ddd;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader .ring:after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 5px solid black;
+  border-top-color: transparent;
+  animation: rotate 1.5s linear infinite;
+}
+
+.loading {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

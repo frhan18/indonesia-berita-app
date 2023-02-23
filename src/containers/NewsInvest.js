@@ -22,7 +22,7 @@ export default class NewsInvest extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
   async receivedData() {
@@ -57,21 +57,16 @@ export default class NewsInvest extends Component {
           {this.state.loading ? (
             <Loading />
           ) : (
-            <ThemeProvider
-              breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
-              minBreakpoint="xxs"
-            >
-              <div className="idn-items-list px-3">
-                <ProgramSectionTitle title="BERITA INVESTASI" />
-                <Row className="justify-content-arround">
-                  {this.state.news?.map((data, index) => (
-                    <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
-                      <NewsItem news={data} author="CBNC INDONESIA" />
-                    </Col>
-                  ))}
-                </Row>
-              </div>
-            </ThemeProvider>
+            <div className="idn-items-list px-3 px-md-3 mx-md-3 p-3 py-5">
+              <ProgramSectionTitle title="BERITA INVESTASI" />
+              <Row className="justify-content-arround">
+                {this.state.news?.map((data, index) => (
+                  <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
+                    <NewsItem news={data} author="CBNC INDONESIA" />
+                  </Col>
+                ))}
+              </Row>
+            </div>
           )}
         </>
       </>

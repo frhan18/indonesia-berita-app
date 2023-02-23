@@ -22,7 +22,7 @@ export default class NewsTeknologi extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
   async receivedData() {
@@ -58,7 +58,7 @@ export default class NewsTeknologi extends Component {
           {this.state.loading ? (
             <Loading />
           ) : (
-            <div className="idn-items-list px-3">
+            <div className="idn-items-list px-md-3 mx-md-3 p-3 py-5">
               <ProgramSectionTitle title="BERITA TEKNOLOGI" />
               <Row className="justify-content-arround">
                 {this.state.news?.map((data, index) => (

@@ -148,7 +148,7 @@ export default function Footer() {
           </Col>
           <Col lg={6} md="auto" sm="12">
             <div>
-              <h3 className="text-white mb-3">UPDATE BERITA TERKINI</h3>
+              <h3 className="text-white mb-3">UPDATE BERITA HARI INI</h3>
             </div>
             <div className="d-flex flex-column">
               <ul>
