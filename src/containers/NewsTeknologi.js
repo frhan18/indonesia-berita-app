@@ -22,21 +22,28 @@ export default class NewsTeknologi extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
-  receivedData() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.TECH}`)
-      .then((response) => this.setState({ news: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+  async receivedData() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.TECH}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ news: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
 
   render() {
@@ -44,14 +51,14 @@ export default class NewsTeknologi extends Component {
       <>
         <Helmet
           encodeSpecialCharacters={true}
-          defaultTitle="Berita Teknologi"
+          defaultTitle="Indonesia Berita - Teknologi"
           titleTemplate="Indonesia Berita"
         ></Helmet>
         <>
           {this.state.loading ? (
             <Loading />
           ) : (
-            <div className="idn-items-list px-3">
+            <div className="idn-items-list px-md-3 mx-md-3 p-3 py-5">
               <ProgramSectionTitle title="BERITA TEKNOLOGI" />
               <Row className="justify-content-arround">
                 {this.state.news?.map((data, index) => (

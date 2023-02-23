@@ -1,4 +1,5 @@
 const API_ENDPOINT = {
+  // ADD ENDPOINT BERITA
   NEWS: {
     ALL: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news`,
     LATEST: `${process.env.REACT_APP_BASE_URL}/v1/cnbc-news/news`,

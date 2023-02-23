@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet";
 import HomepageMenu from "../components/ui/News/HomepageMenu";
 import Loading from "../components/shared/Loading";
 import styled from "styled-components";
+import SearchNews from "../components/ui/SearchNews";
+import { Col, Row } from "react-bootstrap";
 
 const HomepageContainer = styled.div`
   width: 100%;
@@ -17,6 +19,7 @@ export default class NewsHomepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      latest: [],
       tecnology: [],
       lifestyle: [],
       mostViewed: [],
@@ -27,89 +30,126 @@ export default class NewsHomepage extends Component {
   }
 
   componentDidMount() {
-    this.getTeknologiLoadApi();
-    this.getLifestyleLoadApi();
-    this.getMostViewedLoadApi();
-    this.getNasionalNewsLoadApi();
-    this.getInternasionalNewsLoadApi();
+    this.fetchDataNewsTerkini();
+    this.fetchDataNewsInternasional();
+    this.fetchDataNewsNasional();
+    this.fetchDataNewsKesehatan();
+    this.fetchDataNewsTeknologi();
 
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
-  getMostViewedLoadApi() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.LATEST}`)
-      .then((response) => this.setState({ mostViewed: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+  async fetchDataNewsTerkini() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ latest: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
 
-  getTeknologiLoadApi() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.TECH}`)
-      .then((response) => this.setState({ tecnology: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+  async fetchDataNewsInternasional() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.INTERNASIONAL}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ internasional: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
 
-  getLifestyleLoadApi() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.LIFESTYLE}`)
-      .then((response) => this.setState({ lifestyle: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+  async fetchDataNewsNasional() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.NASIONAL}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ nasional: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
-  getNasionalNewsLoadApi() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.NASIONAL}`)
-      .then((response) => this.setState({ nasional: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+
+  async fetchDataNewsKesehatan() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LIFESTYLE}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ lifestyle: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
-  getInternasionalNewsLoadApi() {
-    axios
-      .get(`${API_ENDPOINT.NEWS.INTERNASIONAL}`)
-      .then((response) => this.setState({ internasional: response.data.data }))
-      .catch((error) =>
-        error.response
-          ? console.log(
-              { errData: error.response.data },
-              { errStatus: error.response.status }
-            )
-          : console.log({ msg: error.message })
-      );
+
+  async fetchDataNewsTeknologi() {
+    try {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.TECH}`);
+      const responseData = await response.data;
+      // set state
+      this.setState({ tecnology: responseData.data });
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log({ errRequest: error.request });
+      } else {
+        console.log({ errMessage: error.response.message });
+      }
+    }
   }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Helmet
           encodeSpecialCharacters={true}
           defaultTitle="Indonesia Berita"
@@ -124,7 +164,7 @@ export default class NewsHomepage extends Component {
                 headingTitle="BERITA HARI INI"
                 headingLinkName="Lihat semua"
                 headingLink="/terkini"
-                items={this.state.mostViewed}
+                items={this.state.latest}
                 infoAuthor="CBNC INDONESIA"
               />
               <HomepageMenu
@@ -158,7 +198,7 @@ export default class NewsHomepage extends Component {
             </>
           )}
         </HomepageContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -1,3 +1,13 @@
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  transition: ease-in-out;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   background-color: #fff;
@@ -16,21 +26,13 @@
   height: 120px;
 }
 
-html, body {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  transition: ease-in-out;
-  font-family: 'Open Sans', sans-serif;
-}
-
 /* 
   Main content
 */
 .main-content {
   width: 100%;
   height: auto;
-  margin-top: 5rem;
-  padding-top: 5rem;
+  margin-top: 7em;
   position: relative;
 }
 
@@ -44,35 +46,42 @@ html, body {
    Navbar
 */
 .navbar {
-  background-color: #fafafa;
-  color: #000;
-  min-height: 90px;
+  background-color: #000;
+  color: #fff;
+  min-height: 100px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, 
+              rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
 
-  /* box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, 
-              rgba(17, 17, 26, 0.1) 0px 0px 8px; */
+.navbar-collapse{
+  transition: ease-in-out 300ms !important;
+}
+
+.navbar-toggler {
+  background-color: #fff !important;
 }
 
 .navbar .navbar-brand {
-  font-size: 32px;
+  font-size: 33px;
   font-weight: 600;
   font-style: normal;
-  color: #000;
+  color: #fff !important;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0, 0,0, 0.2);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .navbar .nav-link {
   font-size: 18px;
   font-weight: 400;
   font-style: normal;
-  color: #000 !important;
+  color: #fff !important;
   text-transform: uppercase;
 }
 
 .idn-card-item {
   width: 100%;
   height: 550px !important;
-  background-color:#fff;
+  background-color: #fff;
   /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
   border-radius: 8px !important;
   margin-bottom: 30px;
@@ -99,7 +108,7 @@ html, body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-   line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   transition: ease-in 300ms;
 }
@@ -107,6 +116,7 @@ html, body {
 .idn-card-item .idc-item-name:hover {
   text-decoration: underline;
 }
+
 .idn-card-item .idc-item-name:visited {
   color: blueviolet !important;
 }
@@ -142,7 +152,7 @@ html, body {
   background-color: #fff;
   border-radius: 10px;
   transition: ease 500ms;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .idn-program-card:hover {
@@ -167,7 +177,7 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp:5;
+  -webkit-line-clamp: 5;
   /* number of lines to show */
   line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -182,9 +192,9 @@ html, body {
    Footer section
 */
 .footer-section {
-  border-top: 1px dotted black;
   width: 100%;
-  padding: 20px;
+  height: auto;
+  padding: 30px;
   background-color: #000;
   color: #fff;
   font-size: 16px;

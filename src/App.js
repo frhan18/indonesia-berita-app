@@ -14,10 +14,11 @@ const NewsHomepage = Loadable({
   loading: Loading,
 });
 
-const NewsAll = Loadable({
-  loader: () => import("./containers/NewsAll"),
-  loading: loading,
+const Search = Loadable({
+  loader: () => import("./containers/Search"),
+  loading: Loading,
 });
+
 const NewsMostViewed = Loadable({
   loader: () => import("./containers/NewsMostViewed"),
   loading: loading,
@@ -79,6 +80,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    // Update status render ?
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
@@ -90,11 +92,11 @@ export default class App extends Component {
       <React.Fragment>
         <Navigation />
         <ContentLayouts>
-          {this.state.loading ? (
+          {this.state.loading ? ( // Cek loading komponent ?
             <Loading />
           ) : (
             <Routes>
-              <Route exact path="*" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
               <Route exact path="/dunia" element={<NewsInternasional />} />
               <Route exact path="/indonesia" element={<NewsNasional />} />
               <Route exact path="/syariah" element={<NewsSyariah />} />
@@ -106,12 +108,12 @@ export default class App extends Component {
               <Route exact path="/olahraga" element={<NewsSports />} />
               <Route exact path="/teknologi" element={<NewsTeknologi />} />
               <Route exact path="/terkini" element={<NewsMostViewed />} />
-              <Route exact path="/berita" element={<NewsAll />} />
+              <Route exact path="/search" element={<Search />} />
               <Route exact path="/" element={<NewsHomepage />} />
             </Routes>
           )}
+          <Footer />
         </ContentLayouts>
-        <Footer />
       </React.Fragment>
     );
   }
