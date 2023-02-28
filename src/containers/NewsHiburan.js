@@ -5,7 +5,7 @@ import { Col, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 
 // Include components:news
-import NewsItem from "../components/ui/News/NewsItem";
+import NewsItem from "../components/ui/NewsItem";
 import ProgramSectionTitle from "../components/ui/Program/ProgramSectionTitle";
 import Loading from "../components/shared/Loading";
 export default class NewsHiburan extends Component {
@@ -27,7 +27,13 @@ export default class NewsHiburan extends Component {
 
   async receivedData() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.HIBURAN}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.HIBURAN}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ news: responseData.data });

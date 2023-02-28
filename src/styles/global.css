@@ -3,7 +3,7 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   transition: ease-in-out;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #f7f7f7;
   overflow-x: hidden;
 }
@@ -12,7 +12,6 @@ body {
   width: 8px;
   background-color: #fff;
   transition: ease 300ms;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -24,16 +23,6 @@ body {
   background-color: #9c9c9c;
   border-radius: 100px;
   height: 120px;
-}
-
-/* 
-  Main content
-*/
-.main-content {
-  width: 100%;
-  height: auto;
-  margin-top: 7em;
-  position: relative;
 }
 
 .idn-hero-container {
@@ -49,11 +38,11 @@ body {
   background-color: #000;
   color: #fff;
   min-height: 100px;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, 
-              rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
-.navbar-collapse{
+.navbar-collapse {
   transition: ease-in-out 300ms !important;
 }
 
@@ -89,7 +78,6 @@ body {
 
 .idc-card-item:hover {
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
-
 }
 
 .idc-card-item .idc-item-info {
@@ -145,7 +133,6 @@ body {
   margin-bottom: 10px;
 }
 
-
 .idn-program-card {
   width: 100%;
   height: auto;
@@ -185,20 +172,6 @@ body {
 
 .idn-program-card .idn-program__action {
   margin-bottom: 10px;
-}
-
-
-/*
-   Footer section
-*/
-.footer-section {
-  width: 100%;
-  height: auto;
-  padding: 30px;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 /* 

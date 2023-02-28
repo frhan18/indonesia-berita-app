@@ -1,9 +1,10 @@
 /* 
   Main content
 */
-.content {
-  width: 100%;
+.mainContent {
+  width: 100% !important;
   height: auto;
-  padding-top: 7rem;
-  padding: 100px 13px;
+  margin-top: 7rem;
+  padding: 0 !important;
+  /* padding: 100px 13px; */
 }

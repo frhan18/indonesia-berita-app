@@ -4,11 +4,9 @@ import API_ENDPOINT from "../config/api-endpoint";
 import { Helmet } from "react-helmet";
 
 // Include components:news;
-import HomepageMenu from "../components/ui/News/HomepageMenu";
+import HomepageMenu from "../components/ui/HomepageMenu";
 import Loading from "../components/shared/Loading";
 import styled from "styled-components";
-import SearchNews from "../components/ui/SearchNews";
-import { Col, Row } from "react-bootstrap";
 
 const HomepageContainer = styled.div`
   width: 100%;
@@ -44,7 +42,13 @@ export default class NewsHomepage extends Component {
 
   async fetchDataNewsTerkini() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ latest: responseData.data });
@@ -65,7 +69,13 @@ export default class NewsHomepage extends Component {
 
   async fetchDataNewsInternasional() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.INTERNASIONAL}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.INTERNASIONAL}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ internasional: responseData.data });
@@ -86,7 +96,13 @@ export default class NewsHomepage extends Component {
 
   async fetchDataNewsNasional() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.NASIONAL}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.NASIONAL}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ nasional: responseData.data });
@@ -107,7 +123,13 @@ export default class NewsHomepage extends Component {
 
   async fetchDataNewsKesehatan() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.LIFESTYLE}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LIFESTYLE}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ lifestyle: responseData.data });
@@ -128,7 +150,13 @@ export default class NewsHomepage extends Component {
 
   async fetchDataNewsTeknologi() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.TECH}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.TECH}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
       // set state
       this.setState({ tecnology: responseData.data });

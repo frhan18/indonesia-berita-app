@@ -1,0 +1,23 @@
+.searchNews {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.searchNewsItem {
+  width: 100%;
+  height: auto;
+}
+
+/*
+   Footer section
+*/
+.footerSection {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}

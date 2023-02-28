@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import { Col, Row } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 import API_ENDPOINT from "../config/api-endpoint";
-import { Col, Row } from "react-bootstrap";
-// Include components:news
-import NewsItem from "../components/ui/News/NewsItem";
+import NewsItem from "../components/ui/NewsItem";
 import ProgramSectionTitle from "../components/ui/Program/ProgramSectionTitle";
 import Loading from "../components/shared/Loading";
-import { Helmet } from "react-helmet";
 
 export default class NewsMostViewed extends Component {
   constructor(props) {
@@ -27,14 +26,17 @@ export default class NewsMostViewed extends Component {
 
   async receivedData() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`);
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.data;
-      // set state
       this.setState({ news: responseData.data });
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
