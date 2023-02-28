@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API_ENDPOINT from "../../config/api-endpoint";
+import styles from "../../styles/styled.module.css";
 
 export default function Footer() {
   const date = new Date();
@@ -23,7 +24,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="footer-section">
+    <footer className={styles.footerSection}>
       <Container>
         <Row className="justify-content-arround ">
           <Col lg={4} md={6} sm="12">

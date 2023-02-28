@@ -1,9 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import axios from "axios";
 import API_ENDPOINT from "../../config/api-endpoint";
-import NewsItem from "./News/NewsItem";
+import NewsItem from "./NewsItem";
 import ProgramSectionTitle from "./Program/ProgramSectionTitle";
+import styles from "../../styles/styled.module.css";
 
 export default function SearchNews() {
   const [APIData, setAPIData] = useState([]);
@@ -13,12 +14,16 @@ export default function SearchNews() {
 
   useEffect(() => {
     axios
-      .get(`${API_ENDPOINT.NEWS.ALL}`)
+      .get(`${API_ENDPOINT.NEWS.ALL}`, {
+        url: `${process.env.REACT_APP_BASE_URL}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => setAPIData(response.data.data))
       .catch((error) => {
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
@@ -67,29 +72,31 @@ export default function SearchNews() {
   };
 
   return (
-    <div className="py-5 mb-3">
-      <Row className="justify-content-center mb-3">
-        <Col md={5}>
-          <Form onSubmit={onSubmitSearchHandler}>
-            <div className="d-flex">
-              <Form.Control
-                autoComplete="on"
-                autoFocus
-                type="search"
-                placeholder="Mau cari berita apa?"
-                className="me-2 rounded"
-                aria-label="Mau cari berita apa?"
-                size="lg"
-                value={searchInput}
-                onChange={(e) => searchItems(e.target.value)}
-              />
-              <Button type="submit" variant="dark" size="lg">
-                Cari
-              </Button>
-            </div>
-          </Form>
-        </Col>
-      </Row>
+    <div className={`py-5 mb-3 ${styles.searchNews}`}>
+      <div className={styles.searchNewsItem}>
+        <Row className="justify-content-center mb-3">
+          <Col md={5}>
+            <Form onSubmit={onSubmitSearchHandler}>
+              <div className="d-flex">
+                <Form.Control
+                  autoComplete="on"
+                  autoFocus
+                  type="search"
+                  placeholder="Masukan kata kunci..."
+                  className="me-2 rounded"
+                  aria-label="Masukan kata kunci..."
+                  size="lg"
+                  value={searchInput}
+                  onChange={(e) => searchItems(e.target.value)}
+                />
+                <Button type="submit" variant="dark" size="lg">
+                  Cari
+                </Button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
+      </div>
 
       <div className="idn-items-list ">
         {loading ? (

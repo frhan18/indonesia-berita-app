@@ -11,16 +11,16 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 // Include components:news
 import NewsItem from "./NewsItem";
 
-const HomepageMenuItem = styled.div`
-  margin-bottom: 20px;
+export const HomepageMenuItem = styled.div`
+  margin-bottom: 0px;
   padding: 0px;
 `;
 
-const HomepageMenuHeadingName = styled.div`
+export const HomepageMenuHeadingName = styled.div`
   margin-bottom: 13px;
 `;
 
-const HomepageMenuItemList = styled.div`
+export const HomepageMenuItemList = styled.div`
   width: 100%;
 `;
 
@@ -33,7 +33,7 @@ export default function HomepageMenu({
 }) {
   return (
     <HomepageMenuItem>
-      <div className="px-md-3 mx-md-3 p-3 py-5">
+      <div className="px-md-3 mx-md-3 p-3 py-3">
         <HomepageMenuHeadingName>
           <div className="d-flex justify-content-between align-items-center ">
             <h2 className="text-dark ">{headingTitle}</h2>
