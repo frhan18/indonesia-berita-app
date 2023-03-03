@@ -178,11 +178,19 @@ export default class NewsHomepage extends Component {
   render() {
     return (
       <>
-        <Helmet
-          encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita"
-          titleTemplate="Indonesia Berita"
-        />
+        <Helmet>
+          <title>
+            Indonesia Berita - Informasi Berita Terkini dan Terbaru Hari Ini
+          </title>
+          <meta
+            property="og:description"
+            content="Indeks berita terkini dan terbaru hari ini dari peristiwa, kecelakaan, kriminal, hukum, berita unik, Politik, dan liputan khusus di Indonesia dan Internasional"
+          />
+          <meta property="og:type" content="article" />
+          <meta property="og:site_name" content="indonews.netlify.app" />
+          <meta property="og:url" content="https://indonews.netlify.app/" />
+          <meta name="robots" content="index, follow" />
+        </Helmet>
         <HomepageContainer>
           {this.state.loading ? (
             <Loading />
@@ -191,7 +199,7 @@ export default class NewsHomepage extends Component {
               <HomepageMenu
                 headingTitle="BERITA HARI INI"
                 headingLinkName="Lihat semua"
-                headingLink="/terkini"
+                headingLink="/terbaru"
                 items={this.state.latest}
                 infoAuthor="CBNC INDONESIA"
               />

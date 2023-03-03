@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import API_ENDPOINT from "../../config/api-endpoint";
 import NewsItem from "./NewsItem";
@@ -10,6 +10,7 @@ export default function SearchNews() {
   const [APIData, setAPIData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [displayResult, setDisplayResult] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -37,20 +38,6 @@ export default function SearchNews() {
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
-    if (searchInput !== "") {
-      const filteredData = APIData?.filter((item) =>
-        item.title.toLowerCase().includes(searchInput.toLowerCase())
-      );
-
-      setLoading(true);
-
-      setTimeout(() => {
-        setLoading(false);
-        setFilteredResults(filteredData);
-      }, 1000);
-    } else {
-      setFilteredResults(APIData);
-    }
   };
 
   const onSubmitSearchHandler = (e) => {
@@ -65,64 +52,61 @@ export default function SearchNews() {
       setTimeout(() => {
         setLoading(false);
         setFilteredResults(filteredData);
+        setDisplayResult(
+          `Hasil pencarian "${searchInput}" ${filteredData.length} hasil ditemukan`
+        );
       }, 500);
     } else {
-      setFilteredResults(APIData);
+      setFilteredResults([]);
     }
   };
 
   return (
     <div className={`py-5 mb-3 ${styles.searchNews}`}>
       <div className={styles.searchNewsItem}>
-        <Row className="justify-content-center mb-3">
+        <Row className="justify-content-center mb-3 py-5 mt-5">
           <Col md={5}>
+            <h1 className="text-dark text-uppercase text-center mb-3">
+              INDONESIA BERITA
+            </h1>
             <Form onSubmit={onSubmitSearchHandler}>
-              <div className="d-flex">
+              <InputGroup className="mb-3">
                 <Form.Control
+                  required
                   autoComplete="on"
                   autoFocus
                   type="search"
-                  placeholder="Masukan kata kunci..."
-                  className="me-2 rounded"
-                  aria-label="Masukan kata kunci..."
+                  placeholder="Mau cari berita apa?"
+                  className="rounded"
+                  aria-label="Mau cari berita apa?"
                   size="lg"
                   value={searchInput}
                   onChange={(e) => searchItems(e.target.value)}
                 />
                 <Button type="submit" variant="dark" size="lg">
-                  Cari
+                  <i className="fas fa-search"></i>
                 </Button>
-              </div>
+              </InputGroup>
             </Form>
           </Col>
         </Row>
       </div>
 
-      <div className="idn-items-list ">
+      <div className="idn-items-list px-3 ">
         {loading ? (
           <div className="text-center">Sedang memuat....</div>
         ) : (
           <>
-            {filteredResults.length > 1 ? (
-              <div>
-                <ProgramSectionTitle
-                  title={`HASIL PENCARIAN: ${
-                    searchInput ? searchInput : "Semua"
-                  }`}
-                />
-                <Row className="justify-content-arround">
-                  {filteredResults?.map((data, index) => (
-                    <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
-                      <NewsItem news={data} author="CNN INDONESIA" />
-                    </Col>
-                  ))}
-                </Row>
-              </div>
-            ) : (
-              <div className="text-center pt-3">
-                Pencarian tidak ditemukan...
-              </div>
-            )}
+            <div>
+              <ProgramSectionTitle title={displayResult} />
+              <Row className="justify-content-arround">
+                {filteredResults?.map((data, index) => (
+                  <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
+                    <NewsItem news={data} author="CNN INDONESIA" />
+                  </Col>
+                ))}
+              </Row>
+            </div>
           </>
         )}
       </div>

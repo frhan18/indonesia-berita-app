@@ -80,10 +80,10 @@ export default function Footer() {
                 Beranda
               </Link>
               <Link
-                to="/terkini"
+                to="/terbaru"
                 className=" text-white text-decoration-none mb-1"
               >
-                Terkini
+                Terbaru
               </Link>
               <Link
                 to="/teknologi"

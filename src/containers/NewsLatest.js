@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import axios from "axios";
-import API_ENDPOINT from "../config/api-endpoint";
 import { Col, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-// Include components:news
+import axios from "axios";
+import API_ENDPOINT from "../config/api-endpoint";
 import NewsItem from "../components/ui/NewsItem";
 import ProgramSectionTitle from "../components/ui/Program/ProgramSectionTitle";
 import Loading from "../components/shared/Loading";
 import Paginate from "../components/shared/Paginate";
-export default class NewsBusiness extends Component {
+
+export default class NewsMostViewed extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,9 +33,23 @@ export default class NewsBusiness extends Component {
     }, 1500);
   }
 
+  onPageChange(page) {
+    this.setState({ currentPage: page });
+  }
+  onNextPageChange() {
+    if (
+      this.state.currentPage !==
+      Math.ceil(this.state.news / this.state.pageSize)
+    ) {
+      this.setState({
+        currentPage: +1,
+      });
+    }
+  }
+
   async receivedData() {
     try {
-      const response = await axios.get(`${API_ENDPOINT.NEWS.ENTREPRENUER}`, {
+      const response = await axios.get(`${API_ENDPOINT.NEWS.LATEST}`, {
         url: `${process.env.REACT_APP_BASE_URL}`,
         method: "GET",
         headers: {
@@ -43,12 +57,9 @@ export default class NewsBusiness extends Component {
         },
       });
       const responseData = await response.data;
-      // set state
       this.setState({ news: responseData.data });
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
@@ -88,10 +99,10 @@ export default class NewsBusiness extends Component {
     return (
       <>
         <Helmet>
-          <title>Indonesia Berita - Informasi berita bisnis</title>
+          <title>Indonesia Berita - Informasi berita terbaru</title>
           <meta
             property="og:description"
-            content="Indeks berita bisnis terbaru hari ini di Indonesia dan Internasional"
+            content="Indeks berita terkini dan terbaru hari ini dari peristiwa, kecelakaan, kriminal, hukum, berita unik, Politik, dan liputan khusus di Indonesia dan Internasional"
           />
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content="indonews.netlify.app" />
@@ -102,8 +113,8 @@ export default class NewsBusiness extends Component {
           {this.state.loading ? (
             <Loading />
           ) : (
-            <div className="idn-items-list px-md-3 mx-md-3 p-3 py-5">
-              <ProgramSectionTitle title="BERITA BISNIS" />
+            <div className="idn-items-list px-md-3 mx-md-3 p-3 py-5 ">
+              <ProgramSectionTitle title="BERITA TERBARU" />
               <Row className="justify-content-arround">
                 {currentPosts?.map((data, index) => (
                   <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
