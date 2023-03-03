@@ -7,13 +7,22 @@ import API_ENDPOINT from "../config/api-endpoint";
 import NewsItem from "../components/ui/NewsItem";
 import ProgramSectionTitle from "../components/ui/Program/ProgramSectionTitle";
 import Loading from "../components/shared/Loading";
+import Paginate from "../components/shared/Paginate";
 export default class NewsSyariah extends Component {
   constructor(props) {
     super(props);
     this.state = {
       news: [],
       loading: false,
+      currentPage: 1,
+      postsPerPage: 12,
     };
+
+    this.onPaginateChangeHandler = this.onPaginateChangeHandler.bind(this);
+    this.onPaginateNextChangeHandler =
+      this.onPaginateNextChangeHandler.bind(this);
+    this.onPaginatePreviousChangeHandler =
+      this.onPaginatePreviousChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -51,14 +60,44 @@ export default class NewsSyariah extends Component {
     }
   }
 
+  onPaginateChangeHandler(pageNumber) {
+    this.setState({ currentPage: pageNumber });
+  }
+
+  onPaginateNextChangeHandler() {
+    if (
+      this.state.currentPage !==
+      Math.ceil(this.state.news.length / this.state.postsPerPage)
+    ) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    }
+  }
+
+  onPaginatePreviousChangeHandler() {
+    if (this.state.currentPage !== 1) {
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    }
+  }
+
   render() {
+    const { news, currentPage, postsPerPage } = this.state;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = news.slice(indexOfFirstPost, indexOfLastPost);
+
     return (
       <>
-        <Helmet
-          encodeSpecialCharacters={true}
-          defaultTitle="Indonesia Berita - Syariah"
-          titleTemplate="Indonesia Berita"
-        ></Helmet>
+        <Helmet>
+          <title>Indonesia Berita - Informasi berita syariah</title>
+          <meta
+            property="og:description"
+            content="Indeks berita syariah terbaru hari ini dari peristiwa, kecelakaan, kriminal, hukum, berita unik, Politik, dan liputan khusus di Indonesia dan Internasional"
+          />
+          <meta property="og:type" content="article" />
+          <meta property="og:site_name" content="indonews.netlify.app" />
+          <meta property="og:url" content="https://indonews.netlify.app/" />
+          <meta name="robots" content="index, follow" />
+        </Helmet>
         <>
           {this.state.loading ? (
             <Loading />
@@ -66,12 +105,19 @@ export default class NewsSyariah extends Component {
             <div className="idn-items-list px-md-3 mx-md-3 p-3 py-5">
               <ProgramSectionTitle title="BERITA SYARIAH" />
               <Row className="justify-content-arround">
-                {this.state.news?.map((data, index) => (
+                {currentPosts?.map((data, index) => (
                   <Col xxl={3} xl={4} lg={4} md={6} sm={12} key={index}>
                     <NewsItem news={data} author="CBNC INDONESIA" />
                   </Col>
                 ))}
               </Row>
+              <Paginate
+                postPerPage={postsPerPage}
+                totalPost={news.length}
+                paginate={this.onPaginateChangeHandler}
+                previousPage={this.onPaginatePreviousChangeHandler}
+                nextPage={this.onPaginateNextChangeHandler}
+              />
             </div>
           )}
         </>

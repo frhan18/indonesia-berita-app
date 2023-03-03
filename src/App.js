@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import Loadable from "react-loadable";
-import ContentLayouts from "./Layouts/ContentLayouts";
-import Navigation from "./components/shared/Navigation";
-import Footer from "./components/shared/Footer";
+import Layout from "./components/shared/Layout";
 import Loading from "./components/shared/Loading";
 import PageNotFound from "./components/shared/PageNotFound";
 // Include components
@@ -14,13 +12,8 @@ const NewsHomepage = Loadable({
   loading: Loading,
 });
 
-const Search = Loadable({
-  loader: () => import("./containers/Search"),
-  loading: Loading,
-});
-
-const NewsMostViewed = Loadable({
-  loader: () => import("./containers/NewsMostViewed"),
+const NewsLatest = Loadable({
+  loader: () => import("./containers/NewsLatest"),
   loading: loading,
 });
 
@@ -84,14 +77,13 @@ export default class App extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
   }
 
   render() {
     return (
       <React.Fragment>
-        <Navigation />
-        <ContentLayouts>
+        <Layout>
           {this.state.loading ? ( // Cek loading komponent ?
             <Loading />
           ) : (
@@ -107,13 +99,12 @@ export default class App extends Component {
               <Route exact path="/hiburan" element={<NewsHiburan />} />
               <Route exact path="/olahraga" element={<NewsSports />} />
               <Route exact path="/teknologi" element={<NewsTeknologi />} />
-              <Route exact path="/terkini" element={<NewsMostViewed />} />
-              <Route exact path="/search" element={<Search />} />
+              <Route exact path="/terbaru" element={<NewsLatest />} />
               <Route exact path="/" element={<NewsHomepage />} />
             </Routes>
           )}
-          <Footer />
-        </ContentLayouts>
+          {/* <Footer /> */}
+        </Layout>
       </React.Fragment>
     );
   }
